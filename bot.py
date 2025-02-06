@@ -71,7 +71,7 @@ def run_discord_bot():
     async def send(interaction: discord.Interaction, idea: str):
         await interaction.response.send_message(idea, suppress_embeds=True)
         message = await interaction.original_response()
-        await message.create_thread(name = f"{interaction.user.mention} ": " {idea}")
+        await message.create_thread(name = f"{interaction.user.mention}: {idea}")
         reaction = '⬆️'
         await message.add_reaction(reaction)
 
