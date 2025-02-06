@@ -75,7 +75,22 @@ def run_discord_bot():
         reaction = '⬆️'
         await message.add_reaction(reaction)
 
+    @client.event
+    async def on_reaction_add(reaction, user):
+        if user.bot:
+            return  # Ignore bot reactions
 
+        specific_emoji = '<:shanade:1337156702851694632>' # Emoji to watch for
+        if str(reaction.emoji) == specific_emoji and (str(user.id) == "735967869367746562" or str(user.id) == "96435974011105280"):
+            message = reaction.message
+            # # Check if the message already has a thread
+            thread = message.thread
+            if thread:
+                # Create a string of mentions from raw_mentions
+                mentions = ' '.join(f"{user_id.mention}" for user_id in reaction.message.mentions)
+
+                # Send the message with all mentions at the beginning
+                await thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
 
 
     client.run(os.environ['TOKEN'])
