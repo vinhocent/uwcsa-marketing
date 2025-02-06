@@ -7,14 +7,20 @@ urlReplaceDict = {
     "https://twitter.com/": "https://fixup.com/",
     "instagram.com/": "ddinstagram.com/",
     "https://tiktok.com/": "https://vxtiktok.com/",
-    "https://pixiv.net/": "https://phixiv.net/"
 }
 
 
 def handle_response(message, author):
+    # Replace base URLs based on the dictionary
     for originalUrl in urlReplaceDict:
         if originalUrl in message:
-            reply = message.replace(originalUrl, urlReplaceDict[originalUrl])  
-            return author.mention+ ": " + reply , True
+            message = message.replace(originalUrl, urlReplaceDict[originalUrl])
+
+    # Specifically handle Instagram /share/ to /reel/ replacement
+    if "instagram.com/share/" in message:
+        message = message.replace("/share/", "/reel/")
+
+    if message != author.message:
+        return author.mention + ": " + message, True
 
     return None, False
