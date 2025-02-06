@@ -6,7 +6,7 @@ urlReplaceDict = {
     "https://x.com/": "https://fixupx.com/",
     "https://twitter.com/": "https://fixup.com/",
     "instagram.com/": "ddinstagram.com/",
-    "https://tiktok.com/": "https://vxtiktok.com/",
+    "tiktok.com/": "vxtiktok.com/",
 }
 
 
