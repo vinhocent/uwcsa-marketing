@@ -43,7 +43,7 @@ def run_discord_bot():
         await tree.sync(guild=discord.Object(id=1050941726283534438))
         await tree.sync(guild=discord.Object(id=780881088486703124))
 
-        await client.change_presence(activity=discord.Streaming(name='CSA', url='https://www.twitch.tv/tenz'))
+        await client.change_presence(activity=discord.Streaming(name='CSA', url='https://www.twitch.tv/uwaterloocsa'))
         
         print("Ready!")
 
