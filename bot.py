@@ -86,13 +86,17 @@ def run_discord_bot():
             print(message)
 
             # # Check if the message already has a thread
-            thread = message.fetch_thread()
-            if thread:
+            active_threads = await message.channel.active_threads()
+
+            # Check if a thread exists for this message
+            existing_thread = next((thread for thread in active_threads if thread.starter_message_id == message.id), None)
+
+            if existing_thread:
                 # Create a string of mentions from raw_mentions
                 mentions = ' '.join(f"{user_id.mention}" for user_id in reaction.message.mentions)
 
                 # Send the message with all mentions at the beginning
-                await thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
+                await existing_thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
 
 
     client.run(os.environ['TOKEN'])
