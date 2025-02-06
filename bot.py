@@ -2,7 +2,8 @@ import discord
 from discord import app_commands
 from discord.utils import get
 import os
-import responses
+import responses    
+from discord.ext import commands
 import asyncio
 async def send_message(message,user_message,is_private):
     try:
@@ -36,7 +37,15 @@ def run_discord_bot():
     @client.event
     async def on_ready():
         print(f'{client.user} is now running!')
+        tree.copy_global_to(guild=discord.Object(id=1050941726283534438))
+        tree.copy_global_to(guild=discord.Object(id=780881088486703124))
+
+        await tree.sync(guild=discord.Object(id=1050941726283534438))
+        await tree.sync(guild=discord.Object(id=780881088486703124))
+
+        await client.change_presence(activity=discord.Streaming(name='CSA', url='https://www.twitch.tv/tenz'))
         
+        print("Ready!")
 
 
     @client.event
@@ -53,6 +62,19 @@ def run_discord_bot():
             return
         else:
             await send_message(message,user_message,is_private=False)
+
+
+
+    tree = app_commands.CommandTree(client)
+
+    @tree.command(name = "tiktok", description = "Use this command for any Tiktok ideas that don't have links") 
+    async def send(interaction: discord.Interaction, idea: str):
+        await interaction.response.send_message(idea, suppress_embeds=True)
+        message = await interaction.original_response()
+        await message.create_thread(name = idea)
+        reaction = '⬆️'
+        await message.add_reaction(reaction)
+
 
 
 
