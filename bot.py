@@ -83,20 +83,15 @@ def run_discord_bot():
         specific_emoji = '<:shanade:1337156702851694632>' # Emoji to watch for
         if str(reaction.emoji) == specific_emoji and (str(user.id) == "735967869367746562" or str(user.id) == "96435974011105280"):
             message = reaction.message
-            print(message)
-
             # # Check if the message already has a thread
-            active_threads = await message.channel.active_threads()
-
-            # Check if a thread exists for this message
-            existing_thread = next((thread for thread in active_threads if thread.starter_message_id == message.id), None)
-
-            if existing_thread:
+            thread = await message.fetch_thread()
+            
+            if thread:
                 # Create a string of mentions from raw_mentions
                 mentions = ' '.join(f"{user_id.mention}" for user_id in reaction.message.mentions)
 
                 # Send the message with all mentions at the beginning
-                await existing_thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
+                await thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
 
 
     client.run(os.environ['TOKEN'])
