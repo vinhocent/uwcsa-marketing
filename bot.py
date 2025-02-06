@@ -86,7 +86,7 @@ def run_discord_bot():
             print(message)
 
             # # Check if the message already has a thread
-            thread = message.thread
+            thread = message.fetch_thread()
             if thread:
                 # Create a string of mentions from raw_mentions
                 mentions = ' '.join(f"{user_id.mention}" for user_id in reaction.message.mentions)
