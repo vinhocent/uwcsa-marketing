@@ -69,9 +69,9 @@ def run_discord_bot():
 
     @tree.command(name = "tiktok", description = "Use this command for any Tiktok ideas that don't have links") 
     async def send(interaction: discord.Interaction, idea: str):
-        await interaction.response.send_message(idea, suppress_embeds=True)
+        await interaction.response.send_message(f"{interaction.user.mention}: {idea}", suppress_embeds=True)
         message = await interaction.original_response()
-        await message.create_thread(name = f"{interaction.user.mention}: {idea}")
+        await message.create_thread(name = f"{interaction.user.nick}: {idea}")
         reaction = '⬆️'
         await message.add_reaction(reaction)
 
