@@ -56,5 +56,4 @@ def run_discord_bot():
 
 
 
-    # client.run(os.environ['TOKEN'])
     client.run(os.environ['TOKEN'])

@@ -19,3 +19,4 @@ def handle_response(message, author):
                 message = message.replace("/share/", "/reel/")
             return author.mention + ": " + message, True
 
+    return None, False
