@@ -81,9 +81,9 @@ def run_discord_bot():
     async def on_reaction_add(reaction, user):
         if user.bot:
             return  # Ignore bot reactions
-
+	sm_admins = {"758843223753228300", "735967869367746562", "96435974011105280", "195705934880702465", "213343529240363008"}
         specific_emoji = '<:shanade:1337156702851694632>' # Emoji to watch for
-        if str(reaction.emoji) == specific_emoji and (str(user.id) == "735967869367746562" or str(user.id) == "96435974011105280"):
+        if str(reaction.emoji) == specific_emoji and (str(user.id) in sm_admins) :
             message = reaction.message
             # # Check if the message already has a thread
             thread = await message.fetch_thread()
