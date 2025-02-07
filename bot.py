@@ -91,7 +91,7 @@ def run_discord_bot():
                 mentions = ' '.join(f"{user_id.mention}" for user_id in reaction.message.mentions)
 
                 # Send the message with all mentions at the beginning
-                await thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming + relevant people needed.")
+                await thread.send(f"{mentions}! {user.mention} has approved of your idea! Please plan a filming date + tag any relevant people needed.")
 
 
     client.run(os.environ['TOKEN'])
