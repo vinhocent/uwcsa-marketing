@@ -74,6 +74,7 @@ def run_discord_bot():
         nick = interaction.user.nick if interaction.user.nick != None else interaction.user.mention
         await message.create_thread(name = f"{nick}: {idea}")
         reaction = '⬆️'
+        
         await message.add_reaction(reaction)
 
     @client.event
