@@ -74,14 +74,14 @@ def run_discord_bot():
         nick = interaction.user.nick if interaction.user.nick != None else interaction.user.mention
         await message.create_thread(name = f"{nick}: {idea}")
         reaction = '⬆️'
-        
+
         await message.add_reaction(reaction)
 
     @client.event
     async def on_reaction_add(reaction, user):
         if user.bot:
             return  # Ignore bot reactions
-	sm_admins = {"758843223753228300", "735967869367746562", "96435974011105280", "195705934880702465", "213343529240363008"}
+	    sm_admins = {"758843223753228300", "735967869367746562", "96435974011105280", "195705934880702465", "213343529240363008"}
         specific_emoji = '<:shanade:1337156702851694632>' # Emoji to watch for
         if str(reaction.emoji) == specific_emoji and (str(user.id) in sm_admins) :
             message = reaction.message
