@@ -21,7 +21,9 @@ async def send_message(message,user_message,is_private):
             new_message = await message.channel.send(response)
             reaction = '⬆️'
             await new_message.add_reaction(reaction)
-            await message.channel.create_thread(name=f"{message.author.nick}: {user_message}", message=new_message)
+            nick = interaction.user.nick if interaction.user.nick != None else interaction.user.mention
+
+            await message.channel.create_thread(name=f"{nick}: {user_message}", message=new_message)
     except Exception as e:
         print(e)
         
