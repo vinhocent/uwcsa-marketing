@@ -22,7 +22,7 @@ async def send_message(message,user_message,is_private):
             reaction = '⬆️'
             await new_message.add_reaction(reaction)
 
-            await message.channel.create_thread(name=f"{message.author.display_name}: {user_message}", auto_archive_duration=10080)
+            await new_message= await create_thread(name=f"{message.author.display_name}: {user_message}", auto_archive_duration=10080)
     except Exception as e:
         print(e)
         
