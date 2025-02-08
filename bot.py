@@ -21,9 +21,8 @@ async def send_message(message,user_message,is_private):
             new_message = await message.channel.send(response)
             reaction = '⬆️'
             await new_message.add_reaction(reaction)
-            nick = message.author.nick if message.author.nick != None else message.author.name
 
-            await message.channel.create_thread(name=f"{nick}: {user_message}", message=new_message)
+            await message.channel.create_thread(name=f"{message.author.display_name}: {user_message}", message=new_message)
     except Exception as e:
         print(e)
         
@@ -73,8 +72,8 @@ def run_discord_bot():
     async def send(interaction: discord.Interaction, idea: str):
         await interaction.response.send_message(f"{interaction.user.mention}: {idea}", suppress_embeds=True)
         message = await interaction.original_response()
-        nick = interaction.user.nick if interaction.user.nick != None else interaction.user.mention
-        await message.create_thread(name = f"{nick}: {idea}")
+        
+        await message.create_thread(name = f"{interaction.user.display_name}: {idea}")
         reaction = '⬆️'
 
         await message.add_reaction(reaction)
