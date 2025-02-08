@@ -22,7 +22,7 @@ async def send_message(message,user_message,is_private):
             reaction = '⬆️'
             await new_message.add_reaction(reaction)
 
-            await message.channel.create_thread(name=f"{message.author.display_name}: {user_message}", message=new_message)
+            await message.channel.create_thread(name=f"{message.author.display_name}: {user_message}", auto_archive_duration=10080)
     except Exception as e:
         print(e)
         
@@ -73,7 +73,7 @@ def run_discord_bot():
         await interaction.response.send_message(f"{interaction.user.mention}: {idea}", suppress_embeds=True)
         message = await interaction.original_response()
         
-        await message.create_thread(name = f"{interaction.user.display_name}: {idea}")
+        await message.create_thread(name = f"{interaction.user.display_name}: {idea}" , auto_archive_duration=10080)
         reaction = '⬆️'
 
         await message.add_reaction(reaction)
