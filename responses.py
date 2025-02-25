@@ -16,7 +16,10 @@ def handle_response(message, author):
         if originalUrl in message:
             message = message.replace(originalUrl, urlReplaceDict[originalUrl])
             if "instagram.com/share/" in message:
-                message = message.replace("/share/", "/reel/")
+                message = message.replace("/share/", "/reels/")
+
+            if "instagram.com/reel/" in message:
+                message = message.replace("/reel/", "/reels/")
             return author.mention + ": " + message, True
 
     return None, False
